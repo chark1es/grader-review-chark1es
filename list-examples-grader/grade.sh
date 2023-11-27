@@ -1,5 +1,5 @@
-CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
-CPATHTEST=".:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore"
+CPATH='.:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar'
+CPATHTEST=".:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar org.junit.runner.JUnitCore"
 rm -rf student-submission
 rm -rf grading-area
 
@@ -19,8 +19,8 @@ if [[ -f "student-submission/ListExamples.java" ]]; then
 
     cp TestListExamples.java grading-area
     cp -r student-submission/. grading-area
-
-    javac -cp $CPATH grading-area/*.java
+    cd grading-area
+    javac -cp $CPATH *.java
 
     if [[ $? -eq 0 ]]; then
         echo "Compiled successfully"
@@ -29,7 +29,7 @@ if [[ -f "student-submission/ListExamples.java" ]]; then
         exit 1
     fi
 
-    java -cp $CPATHTEST grading-area/TestListExamples
+    java -cp $CPATHTEST TestListExamples
 
     if [[ $? -eq 0 ]]; then
         echo "Tests passed"
@@ -43,5 +43,4 @@ if [[ -f "student-submission/ListExamples.java" ]]; then
 else
     echo "ListExamples.java not found"
 fi
-
 
